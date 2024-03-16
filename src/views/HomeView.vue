@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-3 col-lg-3">
           <a class="navbar-brand" href="#">
-              <img src="../../public/logo_EGHV-3.jpg" alt="Logo" style="width:150px;">
+              <img src="../../logo_EGHV-3.jpg" alt="Logo" style="width:150px;">
           </a>
         </div>
         <div class="col-md-9 col-lg-9">
@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col-md-3 col-lg-3">
         <div class="card">
-        <feature-viewer v-if="currentFeature !== null" :feature="currentFeature" />
+        <feature-viewer  :feature="currentFeature" />
         </div>
       </div>
       <div class="md-9 col-lg-9">
