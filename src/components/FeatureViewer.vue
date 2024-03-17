@@ -50,9 +50,9 @@
         <tr><th></th><td>{{ properties.oat_roede }}  roede,</td></tr>
         <tr><th></th><td>{{ properties.oat_ellen }}  ellen</td></tr>
         <tr><th>Klasse</th><td>{{ properties.oat_klasse }}</td></tr>
-        <tr><th>Gebruik</th><td>{{ properties.oat_omschrijving }}{{ properties.oat_bbdec }}</td></tr>
+        <tr><th>Gebruik</th><td>{{ properties.oat_omschrijving }}{{ properties.oat_bbdec }}{{ properties.oat_bebouwing }}</td></tr>
       </table>
-      {{ coordinates }}
+
 
       </div>
     </div>
@@ -75,13 +75,7 @@ const properties = computed(() => {
   }
   return null;
 });
-const coordinates = computed(() => {
-  if ('geometry' in props.feature) {
-    return props.feature.geometry.coordinates;
-    console.log ("aap")
-  }
-  return null;
-});
+
 
 const featureStore = useFeatureStore();
 

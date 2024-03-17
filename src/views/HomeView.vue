@@ -50,6 +50,11 @@
                 :options="geoJsonOptions"
                 :options-style="getStyleOptionsFunction(type)"
               />
+              <l-geo-json
+                :geojson="currentFeature"
+                :options="geoJsonOptions"
+                :options-style="getStyleOptionsSelected"
+              />
           </l-map>
         </main>
         </div>
@@ -127,6 +132,13 @@ const getStyleOptionsFunction = ((type) => {
     return styleOptions;
   };
 });
+
+
+const  getStyleOptionsSelected = {   
+    color: "#cf1b1b",
+    weight: 3
+ }
+
 
 const featureStore = useFeatureStore();
 
