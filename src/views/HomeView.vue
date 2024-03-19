@@ -50,6 +50,12 @@
                 :options="geoJsonOptions"
                 :options-style="getStyleOptionsFunction(type)"
               />
+              <l-geo-json v-for="(data, type, index) in geoJsonDataHGB" :key="index"
+                :geojson="data"
+                :options="geoJsonOptions"
+                :options-style="getStyleOptionsFunction(type)"
+              />
+
               <l-geo-json
                 :geojson="currentFeature"
                 :options="geoJsonOptions"
@@ -80,6 +86,7 @@ import { useFeatureStore } from "@/stores/featureStore";
 import FeatureViewer from '@/components/FeatureViewer.vue';
 
 const geoJsonData = ref({});
+const geoJsonDataHGB = ref({});
 
 const zoom = ref(12.70);
 const center = ref([51.42322, 5.359482]);
@@ -106,6 +113,7 @@ const fillColors = {
   wateren: '#44afef',
   bouw: '#460156',
   hgb_wateren: '#44afef',
+  hgb_bouw: '#44afef',
 };
 
 const getGeoServer = (async (type) => {
@@ -178,12 +186,12 @@ onMounted(async () => {
   promises.push(getGeoServerPerceel('heide'));
   promises.push(getGeoServerPerceel('bouwland'));
   promises.push(getGeoServer('hgb_wateren'));
+//  promises.push(getGeoServer('hgb_bouw'));
 
-  const [ lijnen, bouw, wateren, perceel, weiland,boomgaard,bebouwing,dennenbos,hakhout,hooiland,kerkhof,tuin,heide,bouwland,hgb_wateren ] = await Promise.all(promises);
-  console.log(bouw);
+  const [ lijnen, bouw, wateren, perceel, weiland,boomgaard,bebouwing,dennenbos,hakhout,hooiland,kerkhof,tuin,heide,bouwland,hgb_wateren,hgb_bouw ] = await Promise.all(promises);
+
   geoJsonData.value = {
     lijnen,
-    bouw,
     wateren,
     perceel,
     weiland,
@@ -196,8 +204,14 @@ onMounted(async () => {
     tuin,
     heide,
     bouwland,
-    hgb_wateren
+    bouw,
   };
+
+  geoJsonDataHGB.value = {
+    hgb_wateren,
+    hgb_bouw,
+  };
+
   console.log(geoJsonData.value);
 });
 
