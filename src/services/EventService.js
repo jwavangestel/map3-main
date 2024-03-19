@@ -20,8 +20,8 @@ export default {
     console.log('GETTING lijnen');
       return apiClient.get("?service=WFS&version=1.0.0&request=GetFeature&maxFeatures=10000&outputFormat=application%2Fjson&typeName=hgb%3ALijnen%20Veldhoven")
   },
-  getGeoServerPerceelHGB(laag, gemeente) {
-    console.log('GETTING', gemeente);
+  getGeoServerHGB(laag, gemeente) {
+    console.log('GETTING', laag, gemeente);
       return apiClient.get("?service=WFS&version=1.0.0&request=GetFeature&outputFormat=application%2Fjson&typeName=hgb%3A" + laag + "&cql_filter=gemeente%20=%20%27" + gemeente + "%27")
   },
 
