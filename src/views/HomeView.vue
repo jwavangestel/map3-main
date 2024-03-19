@@ -105,6 +105,7 @@ const fillColors = {
   bouwland: '#f9ff3d',
   wateren: '#44afef',
   bouw: '#460156',
+  hgb_wateren: '#44afef',
 };
 
 const getGeoServer = (async (type) => {
@@ -176,8 +177,9 @@ onMounted(async () => {
   promises.push(getGeoServerPerceel('tuin'));
   promises.push(getGeoServerPerceel('heide'));
   promises.push(getGeoServerPerceel('bouwland'));
+  promises.push(getGeoServer('hgb_wateren'));
 
-  const [ lijnen, bouw, wateren, perceel, weiland,boomgaard,bebouwing,dennenbos,hakhout,hooiland,kerkhof,tuin,heide,bouwland ] = await Promise.all(promises);
+  const [ lijnen, bouw, wateren, perceel, weiland,boomgaard,bebouwing,dennenbos,hakhout,hooiland,kerkhof,tuin,heide,bouwland,hgb_wateren ] = await Promise.all(promises);
   console.log(bouw);
   geoJsonData.value = {
     lijnen,
@@ -194,6 +196,7 @@ onMounted(async () => {
     tuin,
     heide,
     bouwland,
+    hgb_wateren
   };
   console.log(geoJsonData.value);
 });
