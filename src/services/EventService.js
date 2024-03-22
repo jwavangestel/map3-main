@@ -22,7 +22,13 @@ export default {
   },
   getGeoServerPerceelHGB(gemeente, soort) {
     console.log('GETTING', gemeente, soort);
-      return apiClient.get("?service=WFS&version=1.0.0&request=GetFeature&outputFormat=application%2Fjson&typeName=hgb%3Apcl_percelen&cql_filter=gemeente%20=%20%27" + gemeente + "%27%20AND%20soort%20=%20%27" + soort + "%27")
+      return apiClient.get("?service=WFS&version=1.0.0&request=GetFeature&outputFormat=application%2Fjson&typeName=hgb%3Apcl_percelen&cql_filter=soort%20=%20%27" + soort + "%27"
+       + "%20AND%20(gemeente%20=%20%27" + gemeente[0] + "%27"
+       + "%20OR%20gemeente%20=%20%27" + gemeente[1] + "%27" 
+       + "%20OR%20gemeente%20=%20%27" + gemeente[2] + "%27"
+       + "%20OR%20gemeente%20=%20%27" + gemeente[3] + "%27"
+       + "%20OR%20gemeente%20=%20%27" + gemeente[4] + "%27"
+       + "%20OR%20gemeente%20=%20%27" + gemeente[5] + "%27)")
   },
   getGeoServerGemeentes() {
     console.log('GETTING gemeentes');

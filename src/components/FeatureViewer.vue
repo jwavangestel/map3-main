@@ -37,20 +37,22 @@
       </div>
     </div>
     <div id="menu1" class="container tab-pane fade"><br>
+
       <h3>Perceel</h3>
       <div v-if="feature !== null">
       <table class="table">
-        <tr><th>Gemeente</th><td>{{ properties.oat_gemeente }}</td></tr>
-        <tr><th>Toponiem</th><td>{{ properties.oat_gehucht }}</td></tr>
+        <tr><td>Kadasternummer</td><td>{{ properties.tekst }}</td></tr>
+        <tr><td>Toponiem</td><td>{{ properties.straat }}</td></tr>
+        <tr><td>Bestemming</td><td>{{ properties.soort }}</td></tr>
+
         <tr><th>Eigenaar</th><td>{{ properties.oat_voornaam  }} {{ properties.oat_tussenvoegsel  }} {{ properties.oat_naam_eigenaar  }}</td></tr>
         <tr><th>Woonplaats</th><td>{{ properties.oat_woonplaats }}</td></tr>
         <tr><th>Beroep</th><td>{{ properties.oat_beroep }}</td></tr>
-        <tr><th>Perceel</th><td>{{ properties.perceel }}</td></tr>
+      
         <tr><th>Oppervlakte</th><td>{{ properties.oat_bunder }}  bunder,</td></tr>
         <tr><th></th><td>{{ properties.oat_roede }}  roede,</td></tr>
         <tr><th></th><td>{{ properties.oat_ellen }}  ellen</td></tr>
         <tr><th>Klasse</th><td>{{ properties.oat_klasse }}</td></tr>
-        <tr><th>Gebruik</th><td>{{ properties.oat_omschrijving }}{{ properties.oat_bbdec }}{{ properties.oat_bebouwing }}</td></tr>
       </table>
 
 
@@ -75,6 +77,8 @@ const properties = computed(() => {
   }
   return null;
 });
+
+
 
 
 const featureStore = useFeatureStore();

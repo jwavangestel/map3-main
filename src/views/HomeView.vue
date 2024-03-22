@@ -214,7 +214,7 @@ const geoJsonOptions = {
   onEachFeature,
 };
 
-const gemeente = "LRP00";
+const gemeente = ["OLE00", "ZEE00", "VHV00", "LRP00", "xxxxx", "xxxxx"];
 
 onMounted(async () => {
   const promises = [];
@@ -222,19 +222,8 @@ onMounted(async () => {
   promises.push(getGeoServerLijnen());
 //  promises.push(getGeoServer('bouw'));
   promises.push(getGeoServer('wateren'));
-//  promises.push(getGeoServer('perceel'));
-//  promises.push(getGeoServerPerceel('weiland'));
-//  promises.push(getGeoServerPerceel('boomgaard'));
-//  promises.push(getGeoServerPerceel('bebouwing'));
-//  promises.push(getGeoServerPerceel('dennenbos'));
-//  promises.push(getGeoServerPerceel('hakhout'));
-//  promises.push(getGeoServerPerceel('hooiland'));
-//  promises.push(getGeoServerPerceel('kerkhof'));
-//  promises.push(getGeoServerPerceel('tuin'));
-//  promises.push(getGeoServerPerceel('heide'));
-//  promises.push(getGeoServerPerceel('bouwland'));
   promises.push(getGeoServer('hgb_wateren'));
-//  promises.push(getGeoServerHGB('hgb_bouw','gemeente'));
+
   promises.push(getGeoServerPerceelHGB(gemeente, 'heide'));
   promises.push(getGeoServerPerceelHGB(gemeente, 'bouwland'));
   promises.push(getGeoServerPerceelHGB(gemeente, 'weiland'));
@@ -250,6 +239,7 @@ onMounted(async () => {
   promises.push(getGeoServerPerceelHGB(gemeente, 'moeras'));  
   promises.push(getGeoServerPerceelHGB(gemeente, 'opg_bomen'));
   promises.push(getGeoServerPerceelHGB(gemeente, 'waterkolk'));
+
 
   const [  gemeentes, lijnen, wateren, hgb_wateren, hgb_heide, hgb_bouwland, hgb_weiland, hgb_boomgaard, hgb_bebouwing, hgb_dennenbos, hgb_hakhout, hgb_hooiland, hgb_kerkhof, hgb_tuin, 
   hgb_dennebosch,
