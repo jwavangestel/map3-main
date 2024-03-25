@@ -61,8 +61,9 @@
   </div>
 </template>
 <script setup>
-import { computed, defineProps } from 'vue';
+import { computed, defineProps, ref, watch } from 'vue';
 import { useFeatureStore } from "@/stores/featureStore";
+import EventService from '@/services/EventService.js';
 //import { controlScaleProps } from '@vue-leaflet/vue-leaflet/dist/src/functions/controlScale';
 
 
@@ -74,12 +75,41 @@ const props = defineProps({
   },
 });
 
+const currentpklAklHGB = ref(null);
+const pklAklHGBLoading = ref(false);
+
 const properties = computed(() => {
   if ('properties' in props.feature) {
     return props.feature.properties;
   }
   return null;
 });
+
+//feature.properties.objkoppel
+const objkoppel = computed(() => {
+  if (properties.value !== null && 'objkoppel' in properties.value) {
+    return props.feature.properties.objkoppel;
+  }
+  return null;
+});
+
+const getPklAklHGB = (async (objkoppel) => {
+  pklAklHGBLoading.value = true;
+  currentpklAklHGB.value = null;
+  const response = await getGeoServerPklAklHGB(objkoppel);
+  if ('data' in response && response.status === 200) {
+    currentpklAklHGB.value = response.data;
+  }
+  
+  pklAklHGBLoading.value = false;
+});
+
+watch(objkoppel.value, (newValue) => {
+  // New value! fetch getGeoServerPklAklHGB
+  getPklAklHGB(newValue);
+});
+
+
 
 
 

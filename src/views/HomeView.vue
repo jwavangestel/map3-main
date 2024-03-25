@@ -192,15 +192,11 @@ const  getStyleOptionsSelected = {
 const featureStore = useFeatureStore();
 
 const currentFeature = computed(() => featureStore.currentFeature );
-const currentFeaturePklAkl = computed(() => featureStore.currentFeaturePklAkl );
-const promises2 = [];
 const layerClick = ((e) => {
   console.log('CLICK!!');
   console.log(e.target.feature);
   console.log(e.target.feature.properties.objkoppel);
   featureStore.setCurrentFeature(e.target.feature);
-  promises2.push(getGeoServerPklAklHGB(e.target.feature.properties.objkoppel));
-  featureStore.setCurrentFeaturePklAkl(e.target.feature);
 });
 
 const onEachFeature = ((feature, layer) => {

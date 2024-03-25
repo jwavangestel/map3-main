@@ -14,9 +14,5 @@ export const useFeatureStore = defineStore('feature', {
     resetCurrentFeature() {
       this.currentFeature = null;
     },
-    setCurrentFeaturePklAkl(featurePklAkl) {
-      this.currentFeaturePklAkl = featurePklAkl;
-    }
-
   },
 });
