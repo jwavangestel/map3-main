@@ -37,12 +37,6 @@ export default {
   },
   getGeoServerPklAklHGB(objkoppel) {
     console.log('GETTING', objkoppel);
-      return apiClient.get("?service=WFS&version=1.0.0&request=GetFeature&outputFormat=application%2Fjson&typeName=hgb%3Apkl&cql_filter=objkoppel%20=%20%27" + objkoppel + "%27"
-       + "%20AND%20(gemeente%20=%20%27" + gemeente[0] + "%27"
-       + "%20OR%20gemeente%20=%20%27" + gemeente[1] + "%27" 
-       + "%20OR%20gemeente%20=%20%27" + gemeente[2] + "%27"
-       + "%20OR%20gemeente%20=%20%27" + gemeente[3] + "%27"
-       + "%20OR%20gemeente%20=%20%27" + gemeente[4] + "%27"
-       + "%20OR%20gemeente%20=%20%27" + gemeente[5] + "%27)")
+      return apiClient.get("?service=WFS&version=1.0.0&request=GetFeature&outputFormat=application%2Fjson&typeName=hgb%3Apkl&cql_filter=objkoppel%20=%20%27" + objkoppel + "%27")
   },
 }
