@@ -81,6 +81,7 @@ import "leaflet/dist/leaflet.css"
 import { LMap, LTileLayer, LMarker, LGeoJson, LPopup } from "@vue-leaflet/vue-leaflet"
 import { ref, onMounted, watch, computed } from 'vue'
 import EventService from '@/services/EventService.js'
+
 import { useFeatureStore } from "@/stores/featureStore";
 import FeatureViewer from '@/components/FeatureViewer.vue';
 
@@ -196,6 +197,7 @@ const layerClick = ((e) => {
   console.log('CLICK!!');
   console.log(e.target.feature);
   featureStore.setCurrentFeature(e.target.feature);
+  featureStore.setCurrentFeaturePklAkl(e.target.feature);
 });
 
 const onEachFeature = ((feature, layer) => {
@@ -214,7 +216,7 @@ const geoJsonOptions = {
   onEachFeature,
 };
 
-const gemeente = ["OLE00", "ZEE00", "VHV00", "LRP00", "xxxxx", "xxxxx"];
+const gemeente = ["OLE00", "ZEE00", "VHV00", "LRP00", "SRD00", "xxxxx"];
 
 onMounted(async () => {
   const promises = [];

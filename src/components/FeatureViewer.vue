@@ -63,6 +63,9 @@
 <script setup>
 import { computed, defineProps } from 'vue';
 import { useFeatureStore } from "@/stores/featureStore";
+//import { controlScaleProps } from '@vue-leaflet/vue-leaflet/dist/src/functions/controlScale';
+
+
 
 const props = defineProps({
   feature: {
@@ -83,9 +86,9 @@ const properties = computed(() => {
 
 const featureStore = useFeatureStore();
 
-const close = (() => {
-  featureStore.resetCurrentFeature();
-});
+
+
+
 
 
 </script>
