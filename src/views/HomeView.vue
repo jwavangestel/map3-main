@@ -2,12 +2,12 @@
   <div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-3 col-lg-3">
+        <div class="col-md-4 col-lg-4">
           <a class="navbar-brand" href="#">
               <img src="../../logo_EGHV-3.jpg" alt="Logo" style="width:150px;">
           </a>
         </div>
-        <div class="col-md-9 col-lg-9">
+        <div class="col-md-8 col-lg-8">
           <nav class="navbar navbar-expand-sm navbar-light justify-content-end ">
 
             <ul class="navbar-nav ">
@@ -28,12 +28,12 @@
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3 col-lg-3">
+      <div class="col-md-4 col-lg-4">
         <div class="card  cont_box">
         <feature-viewer  :feature="currentFeature" />
         </div>
       </div>
-      <div class="md-9 col-lg-9">
+      <div class="md-8 col-lg-8">
         <div class="card">
         <main style="height:85vh; width:74vw">
   

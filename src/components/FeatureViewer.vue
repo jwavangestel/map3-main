@@ -41,19 +41,25 @@
       <h3>Perceel</h3>
       <div v-if="feature !== null">
       <table class="table">
-        <tr><td>Kadasternummer</td><td>{{ properties.tekst }}</td></tr>
-        <tr><td>Toponiem</td><td>{{ properties.straat }}</td></tr>
-        <tr><td>Bestemming</td><td>{{ properties.soort }}</td></tr>
+        <tr><th>Kadasternummer</th><td>{{ properties.tekst }}</td></tr>
+        <tr><th>Toponiem</th><td>{{ currentpklAklHGB.features[0].properties.straat }}</td></tr>
+        <tr><th>Bestemming</th><td>{{ currentpklAklHGB.features[0].properties.soort }}</td></tr>
 
-        <tr><th>Eigenaar</th><td>{{ properties.oat_voornaam  }} {{ properties.oat_tussenvoegsel  }} {{ properties.oat_naam_eigenaar  }}</td></tr>
-        <tr><th>Woonplaats</th><td>{{ properties.oat_woonplaats }}</td></tr>
-        <tr><th>Beroep</th><td>{{ properties.oat_beroep }}</td></tr>
+        <tr><th>Eigenaar</th><td>{{ currentpklAklHGB.features[0].properties.voortekst  }} 
+          {{ currentpklAklHGB.features[0].properties.voornamen  }} 
+          {{ currentpklAklHGB.features[0].properties.naam  }} 
+          {{ currentpklAklHGB.features[0].properties.natekst  }} 
+        </td></tr>
+
+        <tr><th>Beroep</th><td>{{ currentpklAklHGB.features[0].properties.beroep  }}</td></tr>
       
-        <tr><th>Oppervlakte</th><td>{{ properties.oat_bunder }}  bunder,</td></tr>
-        <tr><th></th><td>{{ properties.oat_roede }}  roede,</td></tr>
-        <tr><th></th><td>{{ properties.oat_ellen }}  ellen</td></tr>
-        <tr><th>Klasse</th><td>{{ properties.oat_klasse }}</td></tr>
+        <tr><th>Oppervlakte</th><td><span v-if="(currentpklAklHGB.features[0].properties.grootte === '' )">{{ currentpklAklHGB.features[0].properties.cGrootte }}  m2 (berekend)</span>
+          <span v-if="(currentpklAklHGB.features[0].properties.grootte !== '')">{{ currentpklAklHGB.features[0].properties.grootte }}  m2 </span></td></tr>
+
+        <tr><th>Klassering</th><td>{{ currentpklAklHGB.features[0].properties.klassering }}</td></tr>
+
       </table>
+
 
 
       </div>
@@ -79,7 +85,7 @@ const currentpklAklHGB = ref(null);
 const pklAklHGBLoading = ref(false);
 
 const properties = computed(() => {
-  if ('properties' in props.feature) {
+  if (props.feature !== null && 'properties' in props.feature) {
     return props.feature.properties;
   }
   return null;
@@ -96,7 +102,7 @@ const objkoppel = computed(() => {
 const getPklAklHGB = (async (objkoppel) => {
   pklAklHGBLoading.value = true;
   currentpklAklHGB.value = null;
-  const response = await getGeoServerPklAklHGB(objkoppel);
+  const response = await EventService.getGeoServerPklAklHGB(objkoppel.trim());
   if ('data' in response && response.status === 200) {
     currentpklAklHGB.value = response.data;
   }
@@ -104,8 +110,9 @@ const getPklAklHGB = (async (objkoppel) => {
   pklAklHGBLoading.value = false;
 });
 
-watch(objkoppel.value, (newValue) => {
+watch(objkoppel, (newValue) => {
   // New value! fetch getGeoServerPklAklHGB
+  console.log ('koppel change')
   getPklAklHGB(newValue);
 });
 

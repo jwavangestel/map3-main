@@ -37,6 +37,6 @@ export default {
   },
   getGeoServerPklAklHGB(objkoppel) {
     console.log('GETTING', objkoppel);
-      return apiClient.get("?service=WFS&version=1.0.0&request=GetFeature&outputFormat=application%2Fjson&typeName=hgb%3Apkl&cql_filter=objkoppel%20=%20%27" + objkoppel + "%27")
+      return apiClient.get("?service=WFS&version=1.0.0&request=GetFeature&outputFormat=application%2Fjson&typeName=hgb%3Apcl_details&cql_filter=objkoppel%20=%20%27" + objkoppel + "%27")
   },
 }
